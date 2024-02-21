@@ -24,8 +24,7 @@ struct TabItemViewModifier<Selection: Hashable, V: View>: ViewModifier {
 
     func body(content: Content) -> some View {
         content
-            .opacity(selectionHashValue == item.hashValue ? 1 : 0)
-            .disabled(!(selectionHashValue == item.hashValue))
+            .hide(selectionHashValue != item.hashValue)
             .preference(key: ItemsPreferenceKey.self, value: [item])
             .preference(
                 key: ItemViewBuilderPreferenceKey.self,
